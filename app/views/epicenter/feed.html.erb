@@ -1,0 +1,20 @@
+<h1>@<%= current_user.username %>'s Message Feed</h1>
+
+
+<h3>Here is what your friends are saying:</h3>
+
+
+<% @following_tweets.reverse_each do |tweet| %>
+  <div class="well">
+  	<p>
+	  	<%= image_tag tweet.user.avatar.url, size: 25 %>
+	  	<%= tweet.user.name %>
+	  	@<%= tweet.user.username %>
+	  	<%= time_ago_in_words(tweet.created_at) %> ago said:
+	  </p>
+	  <p>
+	  	<%= tweet.message.html_safe %>
+  	</p>
+	</div>
+<% end %>
+
