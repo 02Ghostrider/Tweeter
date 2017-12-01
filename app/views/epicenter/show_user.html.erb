@@ -4,6 +4,10 @@
 <p><%= @user.location %></p>
 <p><%= @user.bio %></p>
 
+<%= link_to "Stalkers", followers_path(id: @user.id), class: "btn btn-info" %>
+<%= link_to "Stalking", following_path(id: @user.id), class: "btn btn-info" %>
+<%= link_to "Stalking Friends", friends_path(id: @user.id), class: "btn btn-success" %>
+
 <p>
   <% if current_user.following.include?(@user.id) %>
     <%= link_to "Following", unfollow_path(id: @user.id), class: "btn btn-primary", id: "unfollow_btn" %>
@@ -20,7 +24,7 @@
       <%= image_tag tweet.user.avatar.url, size: 25 %>
       <%= @user.name %>
       @<%= @user.username %>
-      <%= time_ago_in_words(tweet.created_at) %> ago:
+      <%= Time.now - tweet.created_at < 86400 ? time_ago_in_words(tweet.created_at) : tweet.created_at.strftime('%b %e') %>
     </p>
     <p>
       <%= tweet.message.html_safe %>

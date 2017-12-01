@@ -10,7 +10,7 @@
   	<p>
 	  	<%= image_tag tweet.user.avatar.url, size: 25 %>
 	  	<%= link_to "@#{tweet.user.username}", show_user_path(id: tweet.user.id) %>
-	  	<%= time_ago_in_words(tweet.created_at) %> ago said:
+	  	<%= Time.now - tweet.created_at < 86400 ? time_ago_in_words(tweet.created_at) : tweet.created_at.strftime('%b %e') %>
 	  </p>
 	  <p>
 	  	<%= tweet.message.html_safe %>
