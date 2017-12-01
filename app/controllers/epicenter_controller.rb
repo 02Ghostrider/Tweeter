@@ -2,7 +2,17 @@ class EpicenterController < ApplicationController
   
   before_action :authenticate_user!
 
+  def all_users
+    @users = User.all
+  end
+
+  def tag_tweets
+    @tag = Tag.find(params[:id])
+  end
+
   def feed
+    @tweet = Tweet.new
+
     @following_tweets = []
 
     Tweet.all.each do |tweet|
