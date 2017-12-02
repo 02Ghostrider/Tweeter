@@ -5,7 +5,7 @@
 		<%= image_tag @tweet.user.avatar_url, size: 25 %>
 		<%= @tweet.user.name %>
 		<%= link_to "@#{@tweet.user.username}", show_user_path(id: @tweet.user.id) %>
-		<%= Time.now - tweet.created_at < 86400 ? time_ago_in_words(tweet.created_at) : tweet.created_at.strftime('%b %e') %> 
+		<%= Time.now - @tweet.created_at < 86400 ? "#{time_ago_in_words(tweet.created_at)} ago" : @tweet.created_at.strftime('%b %e') %> 
 	</p>
 
 	<p><%= @tweet.message.html_safe %></p>

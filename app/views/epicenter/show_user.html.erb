@@ -24,7 +24,7 @@
       <%= image_tag tweet.user.avatar.url, size: 25 %>
       <%= @user.name %>
       @<%= @user.username %>
-      <%= Time.now - tweet.created_at < 86400 ? time_ago_in_words(tweet.created_at) : tweet.created_at.strftime('%b %e') %>
+      <%= Time.now - tweet.created_at < 86400 ? "#{time_ago_in_words(tweet.created_at)} ago" : tweet.created_at.strftime('%b %e') %>
     </p>
     <p>
       <%= tweet.message.html_safe %>
